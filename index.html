@@ -12,7 +12,6 @@ body {
     background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
     color: white;
     text-align: center;
-    padding: 20px;
     overflow-x: hidden;
 }
 
@@ -83,13 +82,13 @@ button:hover {
     animation: slowZoom 8s ease-in-out forwards;
 }
 .slideshow-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
     top: 0;
     left: 0;
-    z-index: -1;
+    z-index: 0;
 }
 
 .slide {
@@ -121,10 +120,11 @@ button:hover {
     opacity: 1;
 }
 
-
-.slide.active {
-    opacity: 0.7; /* slightly transparent so text is readable */
+#finalMessage {
+    position: relative;
+    z-index: 2;
 }
+
 
 </style>
 </head>
@@ -418,6 +418,7 @@ startStory(0);
 
 </body>
 </html>
+
 
 
 
