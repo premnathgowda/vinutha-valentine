@@ -238,9 +238,10 @@ function showFinalScreen() {
 
     const music = document.getElementById("bgMusic");
 
-    document.body.innerHTML = "";
-    document.body.style.background = "black";
-    document.body.style.margin = "0";
+document.querySelector("h1").style.display = "none";
+document.querySelector("p").style.display = "none";
+document.getElementById("storyBox").style.display = "none";
+
 
     document.body.appendChild(music);
 
@@ -419,6 +420,7 @@ startStory(0);
 
 </body>
 </html>
+
 
 
 
