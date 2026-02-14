@@ -236,57 +236,39 @@ function startStory(index) {
 
 function showFinalScreen() {
 
-    // Keep music element safe
     const music = document.getElementById("bgMusic");
 
-    // Clear entire body
     document.body.innerHTML = "";
-
-    //Remove Pink gradient background
     document.body.style.background = "black";
     document.body.style.margin = "0";
 
-
-    // Re-add music so it continues
     document.body.appendChild(music);
 
-
-    // ===== CREATE FULLSCREEN SLIDESHOW =====
     const slideshow = document.createElement("div");
     slideshow.className = "slideshow-container";
     slideshow.innerHTML = `
         <img src="Photo1.jpeg" class="slide-bg active">
         <img src="Photo1.jpeg" class="slide active">
-
         <img src="Photo2.jpeg" class="slide-bg">
         <img src="Photo2.jpeg" class="slide">
-
         <img src="Photo3.jpeg" class="slide-bg">
         <img src="Photo3.jpeg" class="slide">
-
         <img src="Photo4.jpeg" class="slide-bg">
         <img src="Photo4.jpeg" class="slide">
-
         <img src="Photo5.jpeg" class="slide-bg">
         <img src="Photo5.jpeg" class="slide">
-
         <img src="Photo6.jpeg" class="slide-bg">
         <img src="Photo6.jpeg" class="slide">
-
         <img src="Photo7.jpeg" class="slide-bg">
         <img src="Photo7.jpeg" class="slide">
-
         <img src="Photo8.jpeg" class="slide-bg">
         <img src="Photo8.jpeg" class="slide">
-
         <img src="Photo9.jpeg" class="slide-bg">
         <img src="Photo9.jpeg" class="slide">
     `;
 
     document.body.appendChild(slideshow);
 
-
-    // ===== CREATE OVERLAY MESSAGE =====
     const overlay = document.createElement("div");
     overlay.style.position = "fixed";
     overlay.style.inset = "0";
@@ -309,7 +291,16 @@ function showFinalScreen() {
             <br>
             <h2>Happy Valentine’s Day, Vinutha ❤️</h2>
             <p>You are my favorite person, my happiness, and my forever. 💖</p>
+            <button onclick="location.reload()">Play Again ❤️</button>
+        </div>
+    `;
 
+    document.body.appendChild(overlay);
+
+    startSlideshow();
+    startConfetti();
+    startFireworks();
+}
 
 
 function startSlideshow() {
@@ -428,6 +419,7 @@ startStory(0);
 
 </body>
 </html>
+
 
 
 
