@@ -93,18 +93,20 @@ button:hover {
 
 .slide {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
     opacity: 0;
     transition: opacity 2s ease-in-out;
     z-index: 2;
 }
 .slide-bg {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
+    object-position: center;
     filter: blur(20px);
     transform: scale(1.1);
     opacity: 0;
@@ -235,72 +237,80 @@ function startStory(index) {
 
 function showFinalScreen() {
 
+    // ===== CREATE FULLSCREEN SLIDESHOW =====
+    const slideshow = document.createElement("div");
+    slideshow.className = "slideshow-container";
+    slideshow.innerHTML = `
+        <img src="Photo1.jpeg" class="slide-bg active">
+        <img src="Photo1.jpeg" class="slide active">
+
+        <img src="Photo2.jpeg" class="slide-bg">
+        <img src="Photo2.jpeg" class="slide">
+
+        <img src="Photo3.jpeg" class="slide-bg">
+        <img src="Photo3.jpeg" class="slide">
+
+        <img src="Photo4.jpeg" class="slide-bg">
+        <img src="Photo4.jpeg" class="slide">
+
+        <img src="Photo5.jpeg" class="slide-bg">
+        <img src="Photo5.jpeg" class="slide">
+
+        <img src="Photo6.jpeg" class="slide-bg">
+        <img src="Photo6.jpeg" class="slide">
+
+        <img src="Photo7.jpeg" class="slide-bg">
+        <img src="Photo7.jpeg" class="slide">
+
+        <img src="Photo8.jpeg" class="slide-bg">
+        <img src="Photo8.jpeg" class="slide">
+
+        <img src="Photo9.jpeg" class="slide-bg">
+        <img src="Photo9.jpeg" class="slide">
+    `;
+
+    document.body.appendChild(slideshow);
+
+
+    // ===== CREATE OVERLAY MESSAGE LAYER =====
     const overlay = document.createElement("div");
     overlay.style.position = "fixed";
     overlay.style.top = "0";
     overlay.style.left = "0";
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.background = "transparent";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
     overlay.style.display = "flex";
     overlay.style.flexDirection = "column";
     overlay.style.justifyContent = "center";
     overlay.style.alignItems = "center";
     overlay.style.textAlign = "center";
-    overlay.style.padding = "20px";
-    overlay.style.zIndex = "9999";
+    overlay.style.zIndex = "10";
     overlay.style.color = "white";
-    overlay.style.overflow = "hidden";
+    overlay.style.background = "rgba(0,0,0,0.35)"; // subtle dark overlay
+    overlay.style.backdropFilter = "blur(2px)";
 
     overlay.innerHTML = `
-    <div class="slideshow-container">
-    <img src="Photo1.jpeg" class="slide-bg active">
-    <img src="Photo1.jpeg" class="slide active">
-
-    <img src="Photo2.jpeg" class="slide-bg">
-    <img src="Photo2.jpeg" class="slide">
-
-    <img src="Photo3.jpeg" class="slide-bg">
-    <img src="Photo3.jpeg" class="slide">
-
-    <img src="Photo4.jpeg" class="slide-bg">
-    <img src="Photo4.jpeg" class="slide">
-
-    <img src="Photo5.jpeg" class="slide-bg">
-    <img src="Photo5.jpeg" class="slide">
-
-    <img src="Photo6.jpeg" class="slide-bg">
-    <img src="Photo6.jpeg" class="slide">
-
-    <img src="Photo7.jpeg" class="slide-bg">
-    <img src="Photo7.jpeg" class="slide">
-
-    <img src="Photo8.jpeg" class="slide-bg">
-    <img src="Photo8.jpeg" class="slide">
-
-    <img src="Photo9.jpeg" class="slide-bg">
-    <img src="Photo9.jpeg" class="slide">
-</div>
-
-
-    <div id="finalMessage" class="zoom-effect">
-        <h1>You Completed Our Love Story 💕</h1>
-        <p><strong>Vinutha, are you made of copper and tellurium?</strong></p>
-        <p>Because you’re <strong>Cu-Te</strong>…</p>
-        <p>and honestly, I wouldn’t mind conducting a little chemistry experiment with you tonight. 😏💋</p>
-        <br>
-        <h2>Happy Valentine’s Day, Vinutha ❤️</h2>
-        <p>You are my favorite person, my happiness, and my forever. 💖</p>
-        <button onclick="location.reload()">Play Again ❤️</button>
-    </div>
-`;
+        <div id="finalMessage" class="zoom-effect" style="max-width:800px;">
+            <h1>You Completed Our Love Story 💕</h1>
+            <p><strong>Vinutha, are you made of copper and tellurium?</strong></p>
+            <p>Because you’re <strong>Cu-Te</strong>…</p>
+            <p>and honestly, I wouldn’t mind conducting a little chemistry experiment with you tonight. 😏💋</p>
+            <br>
+            <h2>Happy Valentine’s Day, Vinutha ❤️</h2>
+            <p>You are my favorite person, my happiness, and my forever. 💖</p>
+            <button onclick="location.reload()">Play Again ❤️</button>
+        </div>
+    `;
 
     document.body.appendChild(overlay);
 
+
+    // ===== START EFFECTS =====
     startSlideshow();
     startConfetti();
     startFireworks();
 }
+
 
 function startSlideshow() {
     const slides = document.querySelectorAll(".slide");
@@ -418,6 +428,7 @@ startStory(0);
 
 </body>
 </html>
+
 
 
 
