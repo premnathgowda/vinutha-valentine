@@ -236,6 +236,16 @@ function startStory(index) {
 
 function showFinalScreen() {
 
+    // Keep music element safe
+    const music = document.getElementById("bgMusic");
+
+    // Clear entire body
+    document.body.innerHTML = "";
+
+    // Re-add music so it continues
+    document.body.appendChild(music);
+
+
     // ===== CREATE FULLSCREEN SLIDESHOW =====
     const slideshow = document.createElement("div");
     slideshow.className = "slideshow-container";
@@ -271,13 +281,10 @@ function showFinalScreen() {
     document.body.appendChild(slideshow);
 
 
-    // ===== CREATE OVERLAY MESSAGE LAYER =====
+    // ===== CREATE OVERLAY MESSAGE =====
     const overlay = document.createElement("div");
     overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100vw";
-    overlay.style.height = "100vh";
+    overlay.style.inset = "0";
     overlay.style.display = "flex";
     overlay.style.flexDirection = "column";
     overlay.style.justifyContent = "center";
@@ -285,7 +292,7 @@ function showFinalScreen() {
     overlay.style.textAlign = "center";
     overlay.style.zIndex = "10";
     overlay.style.color = "white";
-    overlay.style.background = "rgba(0,0,0,0.35)"; // subtle dark overlay
+    overlay.style.background = "rgba(0,0,0,0.35)";
     overlay.style.backdropFilter = "blur(2px)";
 
     overlay.innerHTML = `
@@ -297,18 +304,7 @@ function showFinalScreen() {
             <br>
             <h2>Happy Valentine’s Day, Vinutha ❤️</h2>
             <p>You are my favorite person, my happiness, and my forever. 💖</p>
-            <button onclick="location.reload()">Play Again ❤️</button>
-        </div>
-    `;
 
-    document.body.appendChild(overlay);
-
-
-    // ===== START EFFECTS =====
-    startSlideshow();
-    startConfetti();
-    startFireworks();
-}
 
 
 function startSlideshow() {
@@ -427,6 +423,7 @@ startStory(0);
 
 </body>
 </html>
+
 
 
 
