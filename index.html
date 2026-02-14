@@ -82,6 +82,28 @@ button:hover {
 .zoom-effect {
     animation: slowZoom 8s ease-in-out forwards;
 }
+.slideshow-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.slide.active {
+    opacity: 0.6; /* slightly transparent so text is readable */
+}
 
 </style>
 </head>
@@ -198,7 +220,7 @@ function showFinalScreen() {
     overlay.style.left = "0";
     overlay.style.width = "100%";
     overlay.style.height = "100%";
-    overlay.style.background = "linear-gradient(to bottom right,#ff4e8a,#ff9a9e)";
+    overlay.style.background = "black";
     overlay.style.display = "flex";
     overlay.style.flexDirection = "column";
     overlay.style.justifyContent = "center";
@@ -210,22 +232,46 @@ function showFinalScreen() {
     overlay.style.overflow = "hidden";
 
     overlay.innerHTML = `
-        <div id="finalMessage" class="zoom-effect">
-            <h1>You Completed Our Love Story 💕</h1>
-            <p><strong>Vinutha, are you made of copper and tellurium?</strong></p>
-            <p>Because you’re <strong>Cu-Te</strong>…</p>
-            <p>and honestly, I wouldn’t mind conducting a little chemistry experiment with you tonight. 😏💋</p>
-            <br>
-            <h2>Happy Valentine’s Day, Vinutha ❤️</h2>
-            <p>You are my favorite person, my happiness, and my forever. 💖</p>
-            <button onclick="location.reload()">Play Again ❤️</button>
-        </div>
-    `;
+    <div class="slideshow-container">
+        <img src="Photo1.jpg" class="slide active">
+        <img src="Photo2.jpg" class="slide">
+        <img src="Photo3.jpg" class="slide">
+        <img src="Photo4.jpg" class="slide">
+        <img src="Photo5.jpg" class="slide">
+        <img src="Photo6.jpg" class="slide">
+        <img src="Photo7.jpg" class="slide">
+        <img src="Photo8.jpg" class="slide">
+        <img src="Photo9.jpg" class="slide">
+    </div>
+
+    <div id="finalMessage" class="zoom-effect">
+        <h1>You Completed Our Love Story 💕</h1>
+        <p><strong>Vinutha, are you made of copper and tellurium?</strong></p>
+        <p>Because you’re <strong>Cu-Te</strong>…</p>
+        <p>and honestly, I wouldn’t mind conducting a little chemistry experiment with you tonight. 😏💋</p>
+        <br>
+        <h2>Happy Valentine’s Day, Vinutha ❤️</h2>
+        <p>You are my favorite person, my happiness, and my forever. 💖</p>
+        <button onclick="location.reload()">Play Again ❤️</button>
+    </div>
+`;
 
     document.body.appendChild(overlay);
 
+    startSlideshow();
     startConfetti();
     startFireworks();
+}
+
+function startSlideshow() {
+    const slides = document.querySelectorAll(".slide");
+    let current = 0;
+
+    setInterval(() => {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+    }, 3500);
 }
 
 
@@ -326,3 +372,4 @@ startStory(0);
 
 </body>
 </html>
+
